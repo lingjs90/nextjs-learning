@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import { BookOpenCheck } from "lucide-react";
 import Card from "./components/Card";
+import { toast} from 'sonner'
 
 export default function Home() {
   const [email,setEmail] = useState('');
@@ -14,12 +15,12 @@ export default function Home() {
       body:JSON.stringify(email)
     }).then((res)=> res.json()).then(data=> {
       if(data.error) {
-        alert(data.error);
+        toast.error(data.error);
       }else {
-        alert("Subscribed successfully!");
+        toast.success("Subscribed successfully!");
       }
     }).catch(err=> {
-      alert("Failed to subscribe.")
+      toast.error("Failed to subscribe.")
     }).finally(()=> {
       setEmail('')
     })
