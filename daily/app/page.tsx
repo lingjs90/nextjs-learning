@@ -9,9 +9,19 @@ export default function Home() {
   const [email,setEmail] = useState('');
 
   const handleSubscribe = ()=> {
-    fetch("api/subscribe",{
+    fetch("/api/subscribe",{
       method:'POST',
       body:JSON.stringify(email)
+    }).then((res)=> res.json()).then(data=> {
+      if(data.error) {
+        alert(data.error);
+      }else {
+        alert("Subscribed successfully!");
+      }
+    }).catch(err=> {
+      alert("Failed to subscribe.")
+    }).finally(()=> {
+      setEmail('')
     })
   }
   return (
