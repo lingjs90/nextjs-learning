@@ -1,12 +1,13 @@
 import { serve} from "inngest/next";
 import { inngest } from "@/inngest/client";
-import { helloWorld } from "@/inngest/function";
+import { helloWorld,sendDailyNews } from "@/inngest/function";
 
 export const {GET,POST,PUT} = serve({
     client:inngest,
     functions:[
         // your functions will be passed here later
-        helloWorld
+        helloWorld,
+        sendDailyNews
     ]
 })
         // Here you can add your logic to save the email to your database
